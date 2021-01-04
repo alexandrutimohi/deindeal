@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/restaurantsFragment">
+
+    <fragment
+        android:id="@+id/restaurantsFragment"
+        android:name="com.example.deindeal.ui.fragments.RestaurantsFragment"
+        android:label="RestaurantsFragment">
+        <action
+            android:id="@+id/action_restaurants_to_detail"
+            app:destination="@id/restaurantDetailFragment">
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/restaurantDetailFragment"
+        android:name="com.example.deindeal.ui.fragments.RestaurantDetailFragment"
+        android:label="RestaurantDetailFragment" />
+</navigation>
