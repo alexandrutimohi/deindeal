@@ -1,4 +1,4 @@
-package com.example.deindeal.SVG
+package com.example.deindeal.svg
 
 import android.content.Context
 import android.graphics.drawable.PictureDrawable

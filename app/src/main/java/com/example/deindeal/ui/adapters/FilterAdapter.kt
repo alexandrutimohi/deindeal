@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.deindeal.App
 import com.example.deindeal.R
 import com.example.deindeal.data.Filter
-import com.example.deindeal.SVG.SvgSoftwareLayerSetter
+import com.example.deindeal.svg.SvgSoftwareLayerSetter
 
 
 class FilterAdapter : RecyclerView.Adapter<FilterAdapter.FilterViewHolder>() {
