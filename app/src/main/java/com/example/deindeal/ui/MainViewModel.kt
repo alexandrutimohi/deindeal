@@ -3,10 +3,11 @@ package com.example.deindeal.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.deindeal.App
 import com.example.deindeal.data.Filter
 import com.example.deindeal.data.Menu
 import com.example.deindeal.data.Restaurant
-import com.example.deindeal.network.INetworkConnection
+import com.example.deindeal.network.INetworkService
 import com.example.deindeal.network.NetworkApi
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -33,8 +34,7 @@ class MainViewModel : ViewModel() {
 
     fun requestRestaurants() {
 
-        val getContentService: INetworkConnection = NetworkApi.contentApi()
-        val request = getContentService.doGetRestaurants()
+        val request = App.networkConnection.doGetRestaurants()
 
         compositeDisposable.add(
             request.subscribeOn(IoScheduler())
@@ -51,8 +51,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun getMenuForId(id: Long) {
-        val getContentService: INetworkConnection = NetworkApi.contentApi()
-        val request = getContentService.doGetDetails(id)
+        val request = App.networkConnection.doGetDetails(id)
 
         compositeDisposable.add(
             request.subscribeOn(IoScheduler())

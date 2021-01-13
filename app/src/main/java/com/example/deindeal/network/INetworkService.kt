@@ -6,13 +6,12 @@ import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface INetworkConnection {
+interface INetworkService {
 
     @GET("{id}/restaurant.json")
     fun doGetDetails(@Path("id") id: Long): Observable<DetailsResult>
 
     @GET("restaurants.json")
     fun doGetRestaurants(): Observable<RestaurantsResults>
-
 
 }

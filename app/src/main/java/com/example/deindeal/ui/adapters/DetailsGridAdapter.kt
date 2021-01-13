@@ -48,7 +48,7 @@ class DetailsGridAdapter :
 
     }
 
-    inner class DetailHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class DetailHolder(view: View) : RecyclerView.ViewHolder(view) {
         var detailTitle: TextView? = null
         var detailPrice: TextView? = null
         var detailImage: ImageView? = null

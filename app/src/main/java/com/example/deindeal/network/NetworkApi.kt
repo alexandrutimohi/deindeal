@@ -26,20 +26,18 @@ class NetworkApi {
             .build()
 
 
-        private fun networkConnection(url: String): INetworkConnection {
+        private fun networkConnection(url: String): INetworkService {
             return Retrofit.Builder()
                 .baseUrl(url)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(Gson()))
                 .client(okHttpClient)
                 .build()
-                .create(INetworkConnection::class.java)
+                .create(INetworkService::class.java)
         }
 
-        fun contentApi(): INetworkConnection {
+        fun contentApi(): INetworkService {
             return networkConnection("https://cpalasanu.github.io/")
         }
-
-
     }
 }
