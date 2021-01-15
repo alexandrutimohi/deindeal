@@ -16,20 +16,17 @@ import timber.log.Timber
 
 class MainViewModel : ViewModel() {
 
-    private val _restaurants = MutableLiveData<ArrayList<Restaurant>>()
-    private val _categories = MutableLiveData<ArrayList<Filter>>()
     private val _details = MutableLiveData<ArrayList<Menu>>()
 
-    private val compositeDisposable = CompositeDisposable()
+    private val _grandResult = MutableLiveData<Result>()
 
-    public val getRestaurants: LiveData<ArrayList<Restaurant>>
-        get() = _restaurants
+    private val compositeDisposable = CompositeDisposable()
 
     public val getDetails: LiveData<ArrayList<Menu>>
         get() = _details
 
-    public val getFilters: LiveData<ArrayList<Filter>>
-        get() = _categories
+    public val getResults: LiveData<Result>
+        get() = _grandResult
 
 
     fun requestRestaurants() {
@@ -41,12 +38,18 @@ class MainViewModel : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(
                     { result ->
-                        _restaurants.postValue(result.restaurants)
-                        _categories.postValue(result.filters)
+                        _grandResult.postValue(
+                            Result.Restaurants(
+                                result.restaurants,
+                                result.filters
+                            )
+                        )
                     }, {
+                        _grandResult.postValue(Result.Failure(it.message))
                         Timber.e("We didn't get the Restaurants: ${it.message}")
                     }
                 )
+
         )
     }
 
@@ -70,4 +73,14 @@ class MainViewModel : ViewModel() {
         super.onCleared()
         compositeDisposable.dispose()
     }
+
+
+}
+
+sealed class Result {
+    data class Failure(var errorMsg: String?) : Result()
+    data class Restaurants(var restaurants: List<Restaurant>, var categories: List<Filter>) :
+        Result()
+
+    data class MenuDetails(var menus: List<Menu>) : Result()
 }

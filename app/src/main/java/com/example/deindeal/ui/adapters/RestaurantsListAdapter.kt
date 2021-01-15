@@ -17,9 +17,9 @@ import com.example.deindeal.data.Restaurant
 class RestaurantsListAdapter :
     RecyclerView.Adapter<RestaurantsListAdapter.RestaurantsViewHolder>() {
 
-    private var mRestaurantsList = ArrayList<Restaurant>()
+    private var mRestaurantsList = emptyList<Restaurant>()
 
-    fun setRestaurantsList(list: ArrayList<Restaurant>) {
+    fun setRestaurantsList(list: List<Restaurant>) {
         mRestaurantsList = list
         notifyDataSetChanged()
     }

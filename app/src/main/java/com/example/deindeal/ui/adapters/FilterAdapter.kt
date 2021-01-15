@@ -18,13 +18,13 @@ import com.example.deindeal.svg.SvgSoftwareLayerSetter
 
 
 class FilterAdapter : RecyclerView.Adapter<FilterAdapter.FilterViewHolder>() {
-    private var mCategories = ArrayList<Filter>()
+    private var mCategories = emptyList<Filter>()
 
     private var mClickListener: ClickListener? = null
 
     private var requestBuilder: RequestBuilder<PictureDrawable>? = null
 
-    fun setCategories(list: ArrayList<Filter>) {
+    fun setCategories(list: List<Filter>) {
         mCategories = list
         notifyDataSetChanged()
     }
